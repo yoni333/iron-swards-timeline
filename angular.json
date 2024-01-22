@@ -88,6 +88,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "iron-swards:build:production",
+              "serveTarget": "iron-swards:serve:production"
+            },
+            "development": {
+              "buildTarget": "iron-swards:build:development",
+              "serveTarget": "iron-swards:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

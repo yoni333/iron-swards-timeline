@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "iron-swards"
+  },
+  "targets": {
+    "iron-swards": {
+      "hosting": {
+        "iron-swards": [
+          "iron-swards"
+        ]
+      }
+    }
   }
 }

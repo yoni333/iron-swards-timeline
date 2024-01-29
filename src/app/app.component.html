@@ -1,44 +1,76 @@
-<ul>
-    <li *ngFor="let item of items | async">
-        <div>
-            {{ item.owner }}
-        </div>
-        <div>
-            {{ item.title }}
-        </div>
-        <div>
-            {{ item.date }}
-        </div>
-        <div>
-            {{ item.datePirsum }}
-        </div>
-        <div>
-            {{ item.link1 }} 
-        </div>
-        <div>
-            {{ item.tag }} 
-        </div>
-        <div>
-            {{ item.text }} 
-        </div>
-        <div><button (click)="deleteItem(item)">מחק</button></div>
-    </li>
-  </ul>
-  <input type="text" placeholder="מי הכניס את הידיעה ?" #owner>
-  <input type="text" #title placeholder="כותרת">
-  <input type="date" #date placeholder="תאריך אירוע"> 
-  <input type="date" #datePirsum placeholder="תאריך פרסום"> 
 
-  <!-- <button (click)="showLinks=!showLinks">עוד קישורים</button> -->
- 
-    <input type="text" #link1 placeholder="קישור לכתבה">
-    <input type="text" #link2 placeholder="קישור לכתבה">
-    <input type="text" #link3 placeholder="קישור לכתבה">
-    <input type="text" #link4 placeholder="קישור לכתבה">
-    <input type="text" #link5 placeholder="קישור לכתבה">
-  <!-- </div> -->
-  <input type="text" #tag placeholder="- תיוג חופשי- שימו פסיק להפריד בין תגים">
+<section [formGroup]="itemGroup">
 
+    <h3>הכנסת ידיעה חדשה</h3>
+    <input type="text" placeholder="חובה - מי הכניס את הידיעה ?" formControlName="owner">
+    <input type="text" formControlName="title" placeholder="חובה -כותרת">
+    <input type="date" formControlName="date" placeholder="תאריך אירוע">
+    <input type="date" formControlName="datePirsum" placeholder="תאריך פרסום חובה -" >
 
-  <textarea name="" id="" cols="100" rows="10" #text placeholder="תוכן"></textarea>
-  <button (click)="addItem(owner.value,title.value,date.value,datePirsum.value,link1.value,link2.value,link3.value,link4.value,link5.value,tag.value,text.value)">add</button>
+    <!-- <button (click)="showLinks=!showLinks">עוד קישורים</button> -->
+
+    <input type="text" formControlName="link1" placeholder=" חובה - קישור לכתבה" >
+    <input type="text" formControlName="link2" placeholder="קישור לכתבה  - לא חובה">
+    <input type="text" formControlName="link3" placeholder="קישור לכתבה- לא חובה">
+    <input type="text" formControlName="link4" placeholder="קישור לכתבה- לא חובה">
+    <input type="text" formControlName="link5" placeholder="קישור לכתבה- לא חובה">
+    <!-- </div> -->
+    <input type="text" formControlName="tag" placeholder="- תיוג חופשי- שימו פסיק להפריד בין תגים">
+    <div>
+        <select name="" id="" formControlName="mainTag">
+            <option value="צבאי-צפון">צבאי-צפון</option>
+            <option value="צבאי-דרום">צבאי-דרום</option>
+            <option value="צבאי-שומרון">צבאי-שומרון</option>
+            <option value="ערביי ישראל">ערביי ישראל</option>
+            <option value="דיעה של פרשן">דיעה של פרשן</option>
+            <option value="פוליטי">פוליטי</option>
+            <option value="גיאופוליטי">גיאופוליטי</option>
+            <option value="הרוגים">הרוגים</option>
+            <option value="פצועים">פצועים</option>
+        </select>
+    </div>
+    <textarea name="" id="" cols="100" rows="10" formControlName="text" placeholder="תוכן חובה -"></textarea>
+    <div>
+  
+        <span *ngIf="this.itemGroup.invalid" class="error-form">חסרים שדות חובה</span>
+        <button (click)="addItem()" class="save-item-btn">שמור ידיעה</button>
+    </div>
+</section>
+<hr>
+<section>
+    <h3>רשימת ידיעות</h3>
+    <ul>
+        <li *ngFor="let item of items | async">
+            <div>
+                {{ item.owner }}
+            </div>
+            <div>
+                {{ item.title }}
+            </div>
+            <div>
+                {{ item.date }}
+            </div>
+            <div>
+                {{ item.datePirsum }}
+            </div>
+            <div>
+                {{ item.link1 }}  ,  {{ item.link2 }} ,{{ item.link3 }} ,{{ item.link4 }} , ,{{ item.link5 }}
+            </div>
+            <div>
+                {{ item.tag }}
+            </div>
+            <div>
+                {{ item.mainTag }}
+            </div>
+            <div>
+                {{ item.text }}
+            </div>
+            <div class="edit-items-btn">
+                <button (click)="deleteItem(item)">מחיקה</button>
+                <button (click)="editItem(item)">עריכה</button>
+            </div>
+    
+            <hr>
+        </li>
+    </ul>
+</section>

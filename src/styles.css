@@ -5,3 +5,33 @@ input{
     width: 100%;
     font-size: 1.4rem;
 }
+textarea,select{
+    margin-top: 10px;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.save-item-btn{
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgb(95, 95, 231);
+    color: aliceblue;
+    font-size:xx-large;
+}
+.error-form{
+    font-size: x-large;
+    color: red;
+    margin:5px;
+   
+}
+
+.edit-items-btn button{
+    margin: 10px;
+}
+.edit-items-btn button:nth-child(1){
+    background-color: rgb(205, 130, 130);
+    color:white
+}
+.edit-items-btn button:nth-child(2){
+    background-color: yellow;
+}
